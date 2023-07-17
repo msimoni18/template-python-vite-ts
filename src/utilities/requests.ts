@@ -11,13 +11,13 @@ export const host =
 export const get = (
   route: string,
   callback: (response: object) => void,
-  errorCallback: (error: Error) => void,
+  errorCallback?: (response: object) => void,
 ) => {
   fetch(`${host}/${route}`)
     .then((response) => response.json())
     .then(callback)
     .catch((error) =>
-      errorCallback ? errorCallback(error) : console.error(error),
+      errorCallback ? errorCallback(error as Error) : console.error(error),
     )
 }
 
@@ -33,7 +33,7 @@ export const post = (
   body: string,
   route: string,
   callback: (response: object) => void,
-  errorCallback: (error: Error) => void,
+  errorCallback?: (response: object) => void,
 ) => {
   fetch(`${host}/${route}`, {
     body,
@@ -43,6 +43,6 @@ export const post = (
     .then((response) => response.json())
     .then(callback)
     .catch((error) =>
-      errorCallback ? errorCallback(error) : console.error(error),
+      errorCallback ? errorCallback(error as Error) : console.error(error),
     )
 }
