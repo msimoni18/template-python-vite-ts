@@ -11,6 +11,7 @@ else:
 
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
+
 @app.route("/")
 def home():
     """Access production build.
@@ -20,6 +21,7 @@ def home():
     """
     if FLASK_ENV == 'production':
         return send_from_directory(app.static_folder, 'index.html')
+
 
 @app.route("/example")
 def example():

@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     get(
-      '/example',
+      'example',
       (response) => alert(response),
       (error) => console.error(error),
     )

@@ -1,5 +1,5 @@
 export const host =
-  import.meta.env.MODE !== 'production' ? 'http://localhost:5000' : ''
+  import.meta.env.MODE !== 'production' ? 'http://localhost:5001' : ''
 
 /**
  * @description - Helper GET method for sending requests to and from the Python/Flask services.
