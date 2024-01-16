@@ -1,13 +1,16 @@
 import os
+import datetime
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 
-if os.environ['FLASK_DEBUG'] == '0':
-    FLASK_ENV = 'production'
-    app = Flask(__name__, static_folder='dist', static_url_path='')
-else:
-    FLASK_ENV = 'development'
-    app = Flask(__name__)
+FLASK_ENV = os.environ.get('FLASK_ENV', 'development')
+
+app_config = {}
+if FLASK_ENV == 'production':
+    app_config['static_folder'] = 'dist'
+    app_config['static_url_path'] = ''
+
+app = Flask(__name__, **app_config)
 
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -25,4 +28,8 @@ def home():
 
 @app.route("/example")
 def example():
-    return jsonify("Hello from python!")
+    date = datetime.datetime.now()
+    return jsonify({
+        'message': 'Hello from python!',
+        'date': date
+    })

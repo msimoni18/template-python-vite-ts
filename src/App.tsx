@@ -4,13 +4,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+type Response = {
+  message: string
+  date: string
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [message, setMessage] = useState<Response>()
 
   useEffect(() => {
     get(
       'example',
-      (response) => alert(response),
+      (response) => setMessage(response as Response),
       (error) => console.error(error),
     )
   }, [])
@@ -25,18 +30,14 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Docker application build with:</h1>
+      <h2>Vite + Typescript + Python</h2>
+      {message && (
+        <div>
+          <p>{message.message}</p>
+          <p>{message.date}</p>
+        </div>
+      )}
     </>
   )
 }

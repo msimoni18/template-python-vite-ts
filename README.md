@@ -1,31 +1,39 @@
 # template-python-vite-ts
 
-Template for building an application using `TypeScript` as the frontend and
-`Flask` as the backend.
+Template for building a `Docker` application using `Vite+TypeScript` as the
+frontend and `Flask` as the backend`.
 
-## Setup for development
+## Setup
+
+### Frontend
+
+Install packages:
+
+`npm install`
+
+### Backend
+
 Create the virtual environment:
 
-```python3 -m venv venv```
+`python3 -m venv venv`
 
 Activate the virtual environment:
 
-```source venv/bin/activate```
+`source venv/bin/activate`
 
 Install the requirements:
 
-```pip install -r requirements.txt```
+`pip install -r backend/requirements.txt`
 
-Start the development server. In separate terminals, run:
+## Running the application
 
-```flask run``` and  ```npm run dev```
+To run locally without `Docker`, run the following commands in separate
+terminals:
 
-## Setup for production
+`npm run flask`
 
-Build the production application:
+`npm run dev`
 
-```npm run build```
+Run with `Docker` (production):
 
-Start the production server:
-
-```gunicorn -w 2 'app:app'```
+`docker compose up -d`
