@@ -1,0 +1,51 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      TZ: America/New_York
+    ports:
+      - 8010:7000
+    depends_on:
+      - server1
+      # - server2
+    networks:
+      - frontend
+      - backend
+  server1:
+    restart: on-failure
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      TZ: America/New_York
+    ports:
+      - 8001:7001
+    networks:
+      - backend
+  # server2:
+  #   restart: on-failure
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     TZ: America/New_York
+  #   ports:
+  #     - 8002:7001
+  #   networks:
+  #     - backend
+  # nginx-proxy:
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - 80:80
+
+networks:
+  frontend:
+  backend:
