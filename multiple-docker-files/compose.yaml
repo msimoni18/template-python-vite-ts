@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      TZ: America/New_York
+    ports:
+      - 8010:7000
+    depends_on:
+      - backend
+    networks:
+      - frontend
+      - backend
+  backend:
+    restart: on-failure
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      TZ: America/New_York
+    ports:
+      - 7001
+    networks:
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 2
+
+networks:
+  frontend:
+  backend:

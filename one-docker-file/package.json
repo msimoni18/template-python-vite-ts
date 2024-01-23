@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "flask": "flask run --port 5001"
+    "flask": "cd backend && flask run --port 5001"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -1,0 +1,11 @@
+services:
+  server:
+    image: server-one-file
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      FLASK_ENV: production
+      TZ: America/New_York
+    ports:
+      - 8050:8050
