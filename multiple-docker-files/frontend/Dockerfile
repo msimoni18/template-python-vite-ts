@@ -66,8 +66,11 @@ RUN npm run build
 # Create a new stage to serve the html files with nginx.
 FROM nginx:alpine as final
 
+# Remove default.conf.
+RUN rm /etc/nginx/conf.d/*.conf
+
 # Copy nginx conf file.
-COPY /.nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY /nginx/nginx.conf /etc/nginx/nginx.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 

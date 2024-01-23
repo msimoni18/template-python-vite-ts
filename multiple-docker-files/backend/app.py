@@ -10,7 +10,7 @@ app = Flask(__name__, **app_config)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 
-@app.route("/example")
+@app.route("/api/example")
 def example():
     date = datetime.datetime.now()
     return jsonify({
