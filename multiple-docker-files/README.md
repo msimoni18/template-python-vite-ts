@@ -30,7 +30,7 @@ Install the requirements:
 To run locally without `Docker`, run the following commands in separate
 terminals from the root directory:
 
-`cd backend; npm run flask`
+`cd backend; flask run --port 5001`
 
 `cd frontend; npm run dev`
 
